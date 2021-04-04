@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block header %} {{ title }} {% endblock %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="card-body">
+        <h3>
+            Автор: {{ author.username }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}
+        </h3>
+    </div>
+
+    <div class="card-body">
+        <h3>
+            {{ post.text }}
+        </h3>
+    </div>
+
+
+    {{ form.as_p }}
+    <input type="submit" value="{{button}}">
+</form>
+
+{% endblock %}

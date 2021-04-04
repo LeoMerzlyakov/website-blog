@@ -1,0 +1,29 @@
+<div class="card mb-3 mt-1 shadow-sm">
+    <div class="card-body">
+          
+        <!-- Загружаю  thumbnail--> 
+        {% load thumbnail %}
+        
+        <img src="{% static 'like.png' %}" alt="like">
+        <img src="{% static 'dislike.png' %}" alt="dislike">
+
+        <!-- Изображение --> 
+            {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+                <img class="card-img" src="{{ im.url }}">
+            {% endthumbnail %}
+        <!-- Изображение --> 
+
+        <p class="card-text">
+                <!-- Ссылка на страницу автора в атрибуте href; username автора в тексте ссылки -->
+                <a href="{% url 'profile' post.author.username %}"><strong class="d-block text-gray-dark">@{{ post.author.username }}</strong></a>
+                <!-- Текст поста -->
+                {{ post.text }}
+        </p>
+        <div class="d-flex justify-content-between align-items-center">
+
+                
+                <!-- Дата публикации  -->
+                <small class="text-muted">{{ post.pub_date }}</small>
+        </div>
+    </div>
+</div>

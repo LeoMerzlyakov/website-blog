@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Записи сообщества {{ group.title }}{% endblock %}
+
+{% block header %}
+    <h1>{{ group.title }}</h1>
+    <p>
+        {{ group.description }}
+    </p>  
+{% endblock %}
+
+{% block content %}
+    {% for p in page.object_list %}
+        {% include "includes/post_item.html" with post=p %}
+    {% endfor %}
+    
+    <!-- Здесь постраничная навигация паджинатора -->
+    {% if page.has_other_pages %}
+        {% include "includes/paginator.html" with items=page paginator=paginator %}
+    {% endif %}
+
+{% endblock %}
